@@ -1,10 +1,13 @@
 import React from 'react';
 import { PageHeader } from 'antd';
-import Post from './Post';
+import PostSnippet from './PostSnippet';
+import api from '../mock_api';
+import _ from 'lodash';
+
 
 function Posts(parms) { 
     return (
-        <div className="post_container">
+        <div className="post_snippet_container">
             <div className="page_header_container">
                 <PageHeader
                     className="site-page-header"
@@ -14,13 +17,15 @@ function Posts(parms) {
             </div>
 
             <div className="particles_container">
-                <Post></Post>
+                {
+                    _.map(api, (article, idx) => (
+                        <PostSnippet key={idx} title={article.title} content={article.content} />
+                    ))
+                }
             </div>
         </div>
 
     )
-
-
 }
 
 
