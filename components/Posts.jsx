@@ -16,10 +16,10 @@ function Posts(parms) {
                     />
             </div>
 
-            <div className="particles_container">
+            <div className="articles_container">
                 {
                     _.map(api, (article, idx) => (
-                        <PostSnippet key={idx} title={article.title} content={article.content} />
+                        <PostSnippet key={idx} id={idx} title={article.title} content={article.content} />
                     ))
                 }
             </div>
