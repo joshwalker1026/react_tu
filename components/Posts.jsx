@@ -4,7 +4,6 @@ import PostSnippet from './PostSnippet';
 import api from '../mock_api';
 import _ from 'lodash';
 
-
 function Posts(parms) { 
     return (
         <div className="post_snippet_container">

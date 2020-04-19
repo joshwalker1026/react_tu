@@ -3,9 +3,6 @@ import { PageHeader, Card } from 'antd';
 import api from '../mock_api';
 
 const Post = (props) => {
-
-    console.log(props);
-
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
