@@ -18,12 +18,17 @@ const CreatePost = (props) => {
         setContent(event.target.value)
     }
 
-    const coCreatePost = (event) => { 
-        console.log(title)
-        console.log(content)
-
+    const onCreatePost = () => { 
+        let postRef = db.collection('posts')      
+        let payload = {title, content}
         
-
+        postRef.add(payload)
+            .then(function (doc) {
+                console.log("Document successfully written!", doc.id);
+            })
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            });
     }
 
     return (
@@ -55,7 +60,7 @@ const CreatePost = (props) => {
                     </div>
                 </div>
                 <div className="post_input_button">
-                    <Button type="primary" size="large" onClick={coCreatePost}>Create Post</Button>>
+                    <Button type="primary" size="large" onClick={onCreatePost}>Create Post</Button>
                 </div>
 
             </div>

@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { PageHeader, Card } from 'antd';
-import api from '../mock_api';
+import db from '../firebase';
 
 const Post = (props) => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
-    useEffect (() => { 
-        let post = api[props.id]
-        setTitle(post.title)
-        setContent(post.content)
+    useEffect(() => { 
+        let postsRef = db
+            .collection('posts')
+            .doc(props.id)
+
+        postsRef
+            .get()
+            .then(doc => { 
+                let { title, content} = doc.data();
+                setTitle(title)
+                setContent(content)
+            })
     }, [])
 
     return (
@@ -18,8 +26,6 @@ const Post = (props) => {
                 <PageHeader
                     className="site-page-header"
                     title={title}
-                    // title="ssss"
-                    subTitle="This is a subtitle for Post"
                 />
 
             </div>
@@ -37,6 +43,5 @@ const Post = (props) => {
 
     )
 }
-
 
 export default Post;

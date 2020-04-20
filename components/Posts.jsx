@@ -1,24 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageHeader } from 'antd';
 import PostSnippet from './PostSnippet';
-import api from '../mock_api';
 import _ from 'lodash';
+import db from '../firebase';
 
-function Posts(parms) { 
+const Posts = (props) => { 
+
+    const [posts, setPosts] = useState([])
+
+    useEffect(() => {
+        let postsRef = db.collection('posts')
+        postsRef
+            .get()
+            .then(posts => { 
+                posts.forEach(post => {
+                    let data = post.data();
+                    let { id } = post
+
+                    let payload = {
+                        id,
+                        ...data
+                    }
+                    setPosts((posts) => [...posts, payload])
+                })
+            })
+    }, [])
+    
+
     return (
         <div className="post_snippet_container">
             <div className="page_header_container">
                 <PageHeader
                     className="site-page-header"
                     title="Posts"
-                    subTitle="This is a subtitle"
                     />
             </div>
 
             <div className="articles_container">
                 {
-                    _.map(api, (article, idx) => (
-                        <PostSnippet key={idx} id={idx} title={article.title} content={article.content} />
+                    _.map(posts, (article, idx) => (
+                        <PostSnippet
+                            key={idx}
+                            id={article.id}
+                            title={article.title}
+                            content={
+                                article.content.substring(0, 1000)
+                            } />
                     ))
                 }
             </div>
