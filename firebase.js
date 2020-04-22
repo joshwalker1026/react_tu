@@ -2,7 +2,7 @@ require("firebase/firestore");
 import firebase from "firebase";
 
 var firebaseConfig = {
-  apiKey: "AIzaSyAVhyCGFlJS5uGAaHXm_LybMrWvXNMaM4c",
+  apiKey: "<API Key>",
   authDomain: "reactpost-ddd3e.firebaseapp.com",
   databaseURL: "https://reactpost-ddd3e.firebaseio.com",
   projectId: "reactpost-ddd3e",

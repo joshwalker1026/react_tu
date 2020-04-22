@@ -7,6 +7,10 @@ html, body{
   width: 970px;
   margin: 0px auto;
   margin-top:20px;
+}
+
+.app_main_navigation {
+  margin-bottom: 20px
 
 }
 

@@ -20,8 +20,6 @@ function PostSnippet(props) {
         </div>
 
     )
-
-
 }
 
 
