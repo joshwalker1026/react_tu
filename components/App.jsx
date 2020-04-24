@@ -2,6 +2,7 @@ import React from 'react';
 import Posts from './Posts';
 import Post from "./Post";
 import CreatePost from "./CreatePost";
+import UpdatePost from "./UpdatePost";
 import { Router, Link } from "@reach/router";
 import { Menu } from 'antd';
 import { ReadOutlined, HighlightOutlined } from '@ant-design/icons';
@@ -32,6 +33,7 @@ function App(props) {
             <Router>
                 <Posts path="posts" default/>
                 <Post path="post/:id"></Post>
+                <UpdatePost path="update_post/:id"></UpdatePost>
                 <CreatePost path="create_post"></CreatePost>
             </Router> 
 
