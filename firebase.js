@@ -8,7 +8,7 @@ var firebaseConfig = {
   projectId: "reactpost-ddd3e",
   storageBucket: "reactpost-ddd3e.appspot.com",
   messagingSenderId: "780678615566",
-  appId: "1:780678615566:web:a4f672d9f2b6936f21225f"
+  appId: "<appId>"
 };
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -16,5 +16,5 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
 export const auth = firebase.auth()
-// export const firestore = firebase.firestore
+export const firestore = firebase.firestore
 export default db;

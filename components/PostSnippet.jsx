@@ -14,15 +14,18 @@ function PostSnippet(props) {
                         <Link to={`/post/${props.id}`} style={{marginRight: '15px'}} >
                             Read Full Article
                         </Link>
+                        {props.user &&
+                            <Link to={`/update_post/${props.id}`}>
+                                Edit
+                            </Link>
+                        }
+                        
 
-                        <Link to={`/update_post/${props.id}`}>
-                            Edit
-                        </Link>
                     </div>
                     
                 }
             >
-                <p className="article_content">
+                <p className="article_content wordwrap">
                     {props.content.split('\n').map((paragraph, idx) => {
                         return <p key={idx}>{paragraph}</p>;
                     })}

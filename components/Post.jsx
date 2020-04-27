@@ -30,7 +30,7 @@ const Post = (props) => {
 
             </div>
 
-            <div className="post_content_container">
+            <div className="post_content_container wordwrap">
                 <Card style={{ marginTop: '20px' }}>
                     {
                         content.split('\n').map((paragraph, idx) => {

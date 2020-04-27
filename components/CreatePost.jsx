@@ -41,9 +41,7 @@ const CreatePost = (props) => {
                 <PageHeader
                     className="site-page-header"
                     title="Create Post"
-                    subTitle="This is a subtitle for Post"
                 />
-
             </div>
             <div className="post_inputs_container">
                 <div className="post_input_container">
