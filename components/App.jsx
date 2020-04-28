@@ -5,10 +5,9 @@ import CreatePost from "./CreatePost";
 import UpdatePost from "./UpdatePost";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
+import AppNav from "./AppNav";
 import { auth } from '../firebase';
-import { Router, Link } from "@reach/router";
-import { Menu } from 'antd';
-import { ReadOutlined, HighlightOutlined } from '@ant-design/icons';
+import { Router } from "@reach/router";
 
 function App(props) {
     const [user, setUser] = useState(false)
@@ -39,39 +38,13 @@ function App(props) {
 
     return (
         <div className="app_container">
-            <div className="app_main_navigation">
-                <Menu mode="horizontal">
-
-                    <Menu.Item key="posts">
-                        <ReadOutlined />
-                        <Link to="/posts" style={{ float: 'right' }}>
-                            Posts
-                        </Link>
-                    </Menu.Item>
-
-                    {user &&
-                        <Menu.Item key="create_post"> 
-                            <HighlightOutlined />
-                            <Link to="/create_post" style={{ float: 'right' }}>
-                                Create Post
-                            </Link>
-                        </Menu.Item>
-                    }
-                    
-                    {!user
-                        ?
-                        <Link to="/sign_in" style={{ float: 'right' }}>Sign In</Link>
-                        :
-                        <a onClick={onSignOut} style={{ float: 'right' }}>Sign Out</a>
-                    }
-                </Menu>
-            </div>
+            <AppNav user={user}/>
 
             <Router>
                 <SignUp path="sign_up" />
                 <SignIn path="sign_in" default />
-                <Posts path="posts" user={user}/>
-                <Post path="post/:id" user={user}/>
+                <Posts path="blogs/:uid/posts" user={user}/>
+                <Post path="blogs/:uid/post/:id" user={user}/>
                 <UpdatePost path="update_post/:id" user={user} />
                 <CreatePost path="create_post" user={user} />
             </Router> 

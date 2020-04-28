@@ -8,6 +8,8 @@ const Post = (props) => {
 
     useEffect(() => { 
         let postsRef = db
+            .collection('users')
+            .doc(props.uid)
             .collection('posts')
             .doc(props.id)
 

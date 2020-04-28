@@ -8,9 +8,10 @@ const Posts = (props) => {
     const [posts, setPosts] = useState([])
     
     useEffect(() => {
-        let postsRef = db.collection('users').doc(props.user.uid).collection('posts')
-
-        postsRef
+        let userId = props?.user.uid ? props?.user.uid : props.uid
+        console.log('userId:' + userId)
+        
+        db.collection('users').doc(userId).collection('posts')
             .onSnapshot(async posts => { 
                 let postData = await posts.docs.map(post => {
                     let data = post.data();
@@ -47,6 +48,7 @@ const Posts = (props) => {
                                 article.content.substring(0, 1000)
                             }
                             user={props.user}
+                            uid={props.uid}
                         />
                     ))
                 }

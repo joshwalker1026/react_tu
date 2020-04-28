@@ -24,7 +24,7 @@ function PostSnippet(props) {
                 title={props.title}
                 extra={
                     <div className="post_snippet_links">
-                        <Link to={`/post/${props.id}`} style={{marginRight: '15px', float: 'left'}} >
+                        <Link to={`/blogs/${props.uid}/post/${props.id}`} style={{marginRight: '15px', float: 'left'}} >
                             Read Full Article
                         </Link>
                         {props.user &&

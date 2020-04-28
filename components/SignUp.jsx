@@ -50,7 +50,7 @@ const SignUp = (props) => {
 
                 <div style={{ width: '100%' }}>
                     <div style={{ float: 'left'}}>
-                        <a href="#" className="">Already have an account? Sign In</a>
+                        <a href="/sign_in" className="">Already have an account? Sign In</a>
                     </div>
 
                     <div className="post_input_button" style={{ marginTop: "10px" }}>
