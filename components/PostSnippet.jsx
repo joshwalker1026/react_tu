@@ -1,8 +1,21 @@
 import React from 'react';
 import { Card } from 'antd';
 import { Link } from "@reach/router";
+import db from '../firebase';
 
 function PostSnippet(props) {
+
+    const onDeletePost = () => { 
+        console.log('post been deleted')
+        let postRef = db
+            .collection('users')
+            .doc(props.user.uid)
+            .collection('posts')
+            .doc(props.id)
+        
+        postRef.delete()
+    };
+
     return (
         <div className="article_container">
             <Card
@@ -11,18 +24,21 @@ function PostSnippet(props) {
                 title={props.title}
                 extra={
                     <div className="post_snippet_links">
-                        <Link to={`/post/${props.id}`} style={{marginRight: '15px'}} >
+                        <Link to={`/post/${props.id}`} style={{marginRight: '15px', float: 'left'}} >
                             Read Full Article
                         </Link>
                         {props.user &&
-                            <Link to={`/update_post/${props.id}`}>
-                                Edit
-                            </Link>
+                            <div className="post_edit_links" style={{float: 'right'}}>
+                                <Link to={`/update_post/${props.id}`} style={{marginRight: '15px'}}>
+                                    Edit 
+                                </Link>
+                                
+                                <a onClick={onDeletePost}>
+                                    Delete
+                                </a>
+                            </div>
                         }
-                        
-
                     </div>
-                    
                 }
             >
                 <p className="article_content wordwrap">
@@ -35,6 +51,5 @@ function PostSnippet(props) {
 
     )
 }
-
 
 export default PostSnippet;

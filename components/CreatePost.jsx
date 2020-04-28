@@ -19,7 +19,7 @@ const CreatePost = (props) => {
     }
 
     const onCreatePost = () => { 
-        let postRef = db.collection('posts')      
+        let postRef = db.collection('users').doc(props.user.uid).collection('posts')      
         let payload = {title, content}
         
         postRef.add(payload)

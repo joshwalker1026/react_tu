@@ -6,16 +6,13 @@ import db from '../firebase';
 
 const Posts = (props) => { 
     const [posts, setPosts] = useState([])
-
-    console.log('in props')
-    console.log(props)
     
     useEffect(() => {
-        let postsRef = db.collection('posts')
+        let postsRef = db.collection('users').doc(props.user.uid).collection('posts')
+
         postsRef
-            .get()
-            .then(posts => { 
-                posts.forEach(post => {
+            .onSnapshot(async posts => { 
+                let postData = await posts.docs.map(post => {
                     let data = post.data();
                     let { id } = post
 
@@ -23,12 +20,13 @@ const Posts = (props) => {
                         id,
                         ...data
                     }
-                    setPosts((posts) => [...posts, payload])
-                })
+                    return payload
+                });
+
+                setPosts(postData)
             })
     }, [])
     
-
     return (
         <div className="post_snippet_container">
             <div className="page_header_container">
@@ -57,6 +55,5 @@ const Posts = (props) => {
 
     )
 }
-
 
 export default Posts;

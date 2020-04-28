@@ -45,16 +45,16 @@ function App(props) {
                     <Menu.Item key="posts">
                         <ReadOutlined />
                         <Link to="/posts" style={{ float: 'right' }}>
-                                Posts
-                            </Link>
+                            Posts
+                        </Link>
                     </Menu.Item>
 
                     {user &&
                         <Menu.Item key="create_post"> 
                             <HighlightOutlined />
                             <Link to="/create_post" style={{ float: 'right' }}>
-                                    Create Post
-                                </Link>
+                                Create Post
+                            </Link>
                         </Menu.Item>
                     }
                     
@@ -68,12 +68,12 @@ function App(props) {
             </div>
 
             <Router>
-                <SignUp path="sign_up"></SignUp>
-                <SignIn path="sign_in" default></SignIn>
+                <SignUp path="sign_up" />
+                <SignIn path="sign_in" default />
                 <Posts path="posts" user={user}/>
-                <Post path="post/:id"></Post>
-                <UpdatePost path="update_post/:id"></UpdatePost>
-                <CreatePost path="create_post"></CreatePost>
+                <Post path="post/:id" user={user}/>
+                <UpdatePost path="update_post/:id" user={user} />
+                <CreatePost path="create_post" user={user} />
             </Router> 
 
         </div >
