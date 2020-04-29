@@ -28,7 +28,7 @@ const AppNav = (props) => {
                     ?
                     <Link to="/sign_in" style={{ float: 'right' }}>Sign In</Link>
                     :
-                    <a onClick={onSignOut} style={{ float: 'right' }}>Sign Out</a>
+                    <a onClick={props.onSignOut} style={{ float: 'right' }}>Sign Out</a>
                 }
             </Menu>
         </div>

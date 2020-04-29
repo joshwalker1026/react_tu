@@ -38,7 +38,7 @@ function App(props) {
 
     return (
         <div className="app_container">
-            <AppNav user={user}/>
+            <AppNav user={user} onSignOut={onSignOut} />
 
             <Router>
                 <SignUp path="sign_up" />
