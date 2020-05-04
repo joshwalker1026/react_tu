@@ -10,8 +10,8 @@ const Posts = (props) => {
     useEffect(() => {
         let userId = props?.user.uid ? props?.user.uid : props.uid
         console.log('userId:' + userId)
-        
-        db.collection('users').doc(userId).collection('posts')
+
+        db.collectionGroup('posts')
             .onSnapshot(async posts => { 
                 let postData = await posts.docs.map(post => {
                     let data = post.data();
@@ -54,7 +54,6 @@ const Posts = (props) => {
                 }
             </div>
         </div>
-
     )
 }
 
