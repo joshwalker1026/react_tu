@@ -7,7 +7,7 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import AppNav from "./AppNav";
 import { auth } from '../firebase';
-import { Router } from "@reach/router";
+import { Router, navigate } from "@reach/router";
 
 function App(props) {
     const [user, setUser] = useState(false)
@@ -27,6 +27,7 @@ function App(props) {
             .then(function (result) {
                 console.log('user signed out!')
                 setUser(false)
+                navigate(`/sign_in`)
             })
             .catch(function (error) {
                 var errorCode = error.code;
@@ -43,7 +44,7 @@ function App(props) {
             <Router>
                 <SignUp path="sign_up" />
                 <SignIn path="sign_in" default />
-                <Posts path="blogs/:uid/posts" user={user}/>
+                <Posts path="blogs/posts" user={user}/>
                 <Post path="blogs/:uid/post/:id" user={user}/>
                 <UpdatePost path="update_post/:id" user={user} />
                 <CreatePost path="create_post" user={user} />

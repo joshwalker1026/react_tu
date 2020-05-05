@@ -10,7 +10,7 @@ const AppNav = (props) => {
 
                 <Menu.Item key="posts">
                     <ReadOutlined />
-                    <Link to={`/blogs/${props.user.uid}/posts`} style={{ float: 'right' }}>
+                    <Link to={`/blogs/posts`} style={{ float: 'right' }}>
                         Posts
                         </Link>
                 </Menu.Item>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageHeader, Input, Button } from 'antd';
 import { auth } from '../firebase';
+import { navigate } from "@reach/router"
 
 const SignUp = (props) => {
     const [email, setEmail] = useState('')
@@ -11,11 +12,14 @@ const SignUp = (props) => {
 
     const onSignUp = (event) => { 
         auth.createUserWithEmailAndPassword(email, password)
-            .catch(function (error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log('error:' + errorCode)
-            console.log(errorMessage)
+            .then( result => {
+                navigate(`/blogs/posts`)
+            })
+            .catch( error => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log('error:' + errorCode)
+                console.log(errorMessage)
         });
 
         setEmail('')

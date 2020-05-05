@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageHeader, Input, Button } from 'antd';
 import { auth } from '../firebase';
+import { navigate } from "@reach/router"
 
 const SignIn = (props) => {
     const [email, setEmail] = useState('')
@@ -13,6 +14,7 @@ const SignIn = (props) => {
         auth.signInWithEmailAndPassword(email, password)
             .then(function (result) {
                 console.log('user signed in!')
+                navigate(`/blogs/posts`)
             })
             .catch(function (error) {
                 var errorCode = error.code;
