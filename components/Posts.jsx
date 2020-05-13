@@ -9,7 +9,6 @@ const Posts = (props) => {
     
     useEffect(() => {
         let userId = props?.user.uid ? props?.user.uid : props.uid
-        console.log('userId:' + userId)
 
         db.collectionGroup('posts')
             .onSnapshot(async posts => { 
@@ -44,11 +43,13 @@ const Posts = (props) => {
                             key={idx}
                             id={article.id}
                             title={_.capitalize(article.title)}
+                            timestamp={article.timestamp}
                             content={
                                 article.content.substring(0, 1000)
                             }
+                            artuhr={article.arthur}
                             user={props.user}
-                            uid={props.uid}
+                            articleUid={article.uid}
                         />
                     ))
                 }

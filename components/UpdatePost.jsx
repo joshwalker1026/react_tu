@@ -35,18 +35,22 @@ const UpdatePost = (props) => {
     }
 
     const onEditPost = () => {
-        let postRef = db.collection('posts').doc(props.id)
+        let postRef = db
+            .collection('users')
+            .doc(props.user.uid)
+            .collection('posts')
+            .doc(props.id)
         let payload = { title, content }
 
         postRef.update(payload)
-            .then(function (doc) {
-                console.log("Document successfully updated!", doc.id);
+            .then(function () {
+                console.log("Document successfully updated!");
             })
             .catch(function (error) {
                 console.error("Error adding document: ", error);
             });
 
-        navigate(`/posts`)
+        navigate(`/blogs/posts`)
     }
 
     return (

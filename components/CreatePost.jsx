@@ -9,9 +9,11 @@ const CreatePost = (props) => {
 
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
+    const [arthur, setArthur] = useState()
 
     const onTitleChange = (event) => { 
-        setTitle (event.target.value)
+        setTitle(event.target.value)
+        setArthur(props.user.email)
     }
 
     const onContentChange = (event) => {
@@ -19,8 +21,11 @@ const CreatePost = (props) => {
     }
 
     const onCreatePost = () => { 
-        let postRef = db.collection('users').doc(props.user.uid).collection('posts')      
-        let payload = {title, content}
+        const timestamp = Date.now();
+
+        let postRef = db.collection('users').doc(props.user.uid).collection('posts')  
+        let uid = props.user.uid
+        let payload = { title, content, arthur, timestamp, uid }
         
         postRef.add(payload)
             .then(function (doc) {
@@ -64,7 +69,6 @@ const CreatePost = (props) => {
                 <div className="post_input_button">
                     <Button type="primary" size="large" onClick={onCreatePost}>Create Post</Button>
                 </div>
-
             </div>
 
 
